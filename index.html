@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Small Talk AI News — Daily Brief</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Roboto+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #05060d;
+      --cyan: #00ccff;
+      --gold: #ffcc00;
+      --neon-main: #ff7a00;
+      --neon-shadow: #b8c0cc;
+      --card: rgba(7, 13, 22, 0.64);
+      --card-border: rgba(0, 204, 255, 0.35);
+      --text: #e6f5ff;
+      --muted: #a8bbcc;
+      --footer: rgba(4, 9, 16, 0.78);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Roboto Mono', monospace;
+      overflow-x: hidden;
+    }
+
+    #bg-canvas,
+    #title-canvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    #bg-canvas { z-index: 0; }
+    #title-canvas {
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .overlay {
+      position: relative;
+      z-index: 3;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: clamp(1rem, 2vw, 2rem);
+      background: linear-gradient(180deg, rgba(2, 4, 8, 0.08) 0%, rgba(2, 4, 8, 0.52) 65%, rgba(2, 4, 8, 0.85) 100%);
+    }
+
+    .news-wrap {
+      margin: 0 auto;
+      width: min(1100px, 100%);
+      padding-top: min(54vh, 420px);
+    }
+
+    .date-chip {
+      display: inline-block;
+      margin-bottom: 1rem;
+      padding: 0.45rem 0.8rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 204, 0, 0.45);
+      background: rgba(255, 204, 0, 0.08);
+      color: #ffe89a;
+      font-size: 0.78rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 1rem;
+    }
+
+    .card {
+      grid-column: span 6;
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 1rem;
+      backdrop-filter: blur(9px);
+      -webkit-backdrop-filter: blur(9px);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.28), inset 0 0 0 1px rgba(255,255,255,0.02);
+      transition: transform 0.28s ease, border-color 0.28s ease, background 0.28s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255, 204, 0, 0.6);
+      background: rgba(10, 18, 30, 0.72);
+    }
+
+    .card h3 {
+      margin: 0 0 0.55rem;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1rem;
+      letter-spacing: 0.03em;
+      color: #dff8ff;
+    }
+
+    .card p {
+      margin: 0;
+      line-height: 1.55;
+      color: #d0e2f0;
+      font-size: 0.88rem;
+    }
+
+    .card .src {
+      display: block;
+      margin-top: 0.65rem;
+      color: var(--muted);
+      font-size: 0.75rem;
+    }
+
+    footer {
+      margin-top: 1rem;
+      background: var(--footer);
+      border: 1px solid rgba(0, 204, 255, 0.22);
+      border-radius: 14px;
+      padding: 0.85rem 1rem;
+      color: #c3d7e8;
+      font-size: 0.8rem;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 900px) {
+      .card { grid-column: span 12; }
+      .news-wrap { padding-top: min(56vh, 470px); }
+    }
+
+    @media (max-width: 600px) {
+      .overlay { padding: 0.8rem; }
+      .card h3 { font-size: 0.95rem; }
+      .card p { font-size: 0.82rem; }
+      footer { font-size: 0.74rem; }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="bg-canvas" aria-hidden="true"></canvas>
+  <canvas id="title-canvas" aria-hidden="true"></canvas>
+
+  <div class="overlay">
+    <section class="news-wrap">
+      <span class="date-chip">Daily Brief • February 7, 2026</span>
+      <div class="cards">
+        <article class="card">
+          <h3>• OpenAI unveiled GPT-4o as its flagship omni model</h3>
+          <p>OpenAI introduced GPT-4o with real-time multimodal interactions (text, vision, audio), plus desktop app updates and faster model response targets for users.</p>
+          <span class="src">Source: OpenAI Spring Update livestream + official blog (May 13, 2024)</span>
+        </article>
+
+        <article class="card">
+          <h3>• Google announced Gemini 1.5 Flash and Project Astra progress</h3>
+          <p>At Google I/O, Google showcased lighter/faster Gemini models and live assistant capabilities under Project Astra, with broad product integrations across Search and Workspace.</p>
+          <span class="src">Source: Google I/O keynote + Google AI blog (May 14, 2024)</span>
+        </article>
+
+        <article class="card">
+          <h3>• Apple launched “Apple Intelligence” across iPhone, iPad, and Mac</h3>
+          <p>Apple detailed on-device + private cloud AI features, including Writing Tools, image generation, and Siri upgrades, while announcing ChatGPT integration in OS workflows.</p>
+          <span class="src">Source: Apple WWDC keynote + Apple Newsroom (June 10, 2024)</span>
+        </article>
+
+        <article class="card">
+          <h3>• Anthropic released Claude 3.5 Sonnet</h3>
+          <p>Anthropic rolled out Claude 3.5 Sonnet with stronger coding/vision performance and introduced Artifacts, enabling interactive output previews for users.</p>
+          <span class="src">Source: Anthropic official announcement (June 20, 2024)</span>
+        </article>
+
+        <article class="card" style="grid-column: span 12;">
+          <h3>• The EU AI Act cleared final approval stage</h3>
+          <p>The Council of the European Union gave final sign-off to the AI Act, setting a risk-based legal framework for general-purpose and high-risk AI systems in Europe.</p>
+          <span class="src">Source: Council of the EU press release (May 21, 2024)</span>
+        </article>
+      </div>
+
+      <footer>
+        Recording tip: capture an <strong>8–12 second vertical clip</strong> in <strong>1080×1920</strong> (or 4K vertical) with OBS. Use a gentle downward page scroll + 1–2 card hover pauses for Reels/TikTok pacing.
+      </footer>
+    </section>
+  </div>
+
+  <script type="module">
+    import * as THREE from 'https://unpkg.com/three@0.164.1/build/three.module.js';
+
+    const bpm = 85;
+    const beat = 60 / bpm; // 0.706s
+
+    // ---------- Background scene: "Neon Transit Skyline" ----------
+    const bgCanvas = document.getElementById('bg-canvas');
+    const bgRenderer = new THREE.WebGLRenderer({ canvas: bgCanvas, antialias: true, alpha: false });
+    bgRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    bgRenderer.setSize(window.innerWidth, window.innerHeight);
+
+    const scene = new THREE.Scene();
+    scene.fog = new THREE.Fog(0x05060d, 12, 65);
+
+    const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 120);
+    camera.position.set(0, 7, 23);
+    camera.lookAt(0, 1.8, 0);
+
+    const ambient = new THREE.AmbientLight(0x0a2430, 0.8);
+    scene.add(ambient);
+
+    // Floating skyline pillars (cyan)
+    const pillars = new THREE.Group();
+    const pillarGeo = new THREE.BoxGeometry(0.35, 1, 0.35);
+    const pillarMat = new THREE.MeshBasicMaterial({ color: 0x00ccff, transparent: true, opacity: 0.35 });
+
+    for (let x = -16; x <= 16; x += 1.2) {
+      for (let z = -18; z <= 8; z += 2.2) {
+        const h = 0.9 + Math.random() * 6.2;
+        const p = new THREE.Mesh(pillarGeo, pillarMat.clone());
+        p.scale.y = h;
+        p.position.set(x + (Math.random() - 0.5) * 0.45, h * 0.5 - 1.4, z + (Math.random() - 0.5) * 0.45);
+        p.userData.baseOpacity = 0.16 + Math.random() * 0.22;
+        pillars.add(p);
+      }
+    }
+    scene.add(pillars);
+
+    // Elevated transit lanes with moving gold pods
+    const lanes = new THREE.Group();
+    const podGroup = new THREE.Group();
+    for (let i = 0; i < 9; i++) {
+      const y = -0.8 + i * 0.65;
+      const curvePts = [];
+      for (let x = -20; x <= 20; x += 1) {
+        curvePts.push(new THREE.Vector3(x, y + Math.sin((x + i * 1.7) * 0.14) * 0.35, -6 + i * 1.35));
+      }
+      const laneGeom = new THREE.BufferGeometry().setFromPoints(curvePts);
+      const laneMat = new THREE.LineBasicMaterial({ color: 0x2a9dff, transparent: true, opacity: 0.24 });
+      lanes.add(new THREE.Line(laneGeom, laneMat));
+
+      const pod = new THREE.Mesh(
+        new THREE.SphereGeometry(0.12, 10, 10),
+        new THREE.MeshBasicMaterial({ color: 0xffcc00, transparent: true, opacity: 0.95 })
+      );
+      pod.userData = { points: curvePts, speed: 0.045 + Math.random() * 0.02, t: Math.random() };
+      podGroup.add(pod);
+    }
+    scene.add(lanes, podGroup);
+
+    // Gold particles accent
+    const pCount = 340;
+    const pPos = new Float32Array(pCount * 3);
+    for (let i = 0; i < pCount; i++) {
+      pPos[i * 3] = (Math.random() - 0.5) * 46;
+      pPos[i * 3 + 1] = Math.random() * 13 - 3;
+      pPos[i * 3 + 2] = (Math.random() - 0.5) * 34;
+    }
+    const particleGeo = new THREE.BufferGeometry();
+    particleGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
+    const particleMat = new THREE.PointsMaterial({ color: 0xffcc00, size: 0.05, transparent: true, opacity: 0.78 });
+    const particles = new THREE.Points(particleGeo, particleMat);
+    scene.add(particles);
+
+    // ---------- Static orthographic title with bbox centering ----------
+    const titleCanvas = document.getElementById('title-canvas');
+    const titleRenderer = new THREE.WebGLRenderer({ canvas: titleCanvas, antialias: true, alpha: true });
+    titleRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    titleRenderer.setSize(window.innerWidth, window.innerHeight);
+
+    const titleScene = new THREE.Scene();
+    const ortho = new THREE.OrthographicCamera(-window.innerWidth / 2, window.innerWidth / 2, window.innerHeight / 2, -window.innerHeight / 2, -1000, 1000);
+    ortho.position.z = 10;
+
+    function makeTitleSprite() {
+      const txt = 'Small Talk AI News';
+      const c = document.createElement('canvas');
+      const ctx = c.getContext('2d');
+      const fs = Math.max(56, Math.floor(window.innerWidth * 0.082));
+      ctx.font = `900 ${fs}px Orbitron, sans-serif`;
+      const m = ctx.measureText(txt);
+      const padX = 42;
+      const padY = 34;
+      const w = Math.ceil(m.width + padX * 2);
+      const h = Math.ceil(fs + padY * 2);
+      c.width = w;
+      c.height = h;
+
+      const g = c.getContext('2d');
+      g.font = `900 ${fs}px Orbitron, sans-serif`;
+      g.textBaseline = 'top';
+
+      // electric silver offset shadow (no glow)
+      g.fillStyle = '#b8c0cc';
+      g.fillText(txt, padX + 7, padY + 5);
+
+      // neon orange primary fill
+      g.fillStyle = '#ff7a00';
+      g.fillText(txt, padX, padY);
+
+      const texture = new THREE.CanvasTexture(c);
+      texture.needsUpdate = true;
+      const mat = new THREE.SpriteMaterial({ map: texture, transparent: true, depthTest: false });
+      const sprite = new THREE.Sprite(mat);
+      sprite.scale.set(w, h, 1);
+
+      // bounding-box centering in orthographic space
+      const bbox = new THREE.Box3().setFromObject(sprite);
+      const center = new THREE.Vector3();
+      bbox.getCenter(center);
+      sprite.position.set(-center.x, -center.y, 0);
+      return sprite;
+    }
+
+    let titleSprite = makeTitleSprite();
+    titleScene.add(titleSprite);
+
+    function resize() {
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+
+      bgRenderer.setSize(w, h);
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+
+      titleRenderer.setSize(w, h);
+      ortho.left = -w / 2;
+      ortho.right = w / 2;
+      ortho.top = h / 2;
+      ortho.bottom = -h / 2;
+      ortho.updateProjectionMatrix();
+
+      titleScene.remove(titleSprite);
+      titleSprite.material.map.dispose();
+      titleSprite.material.dispose();
+      titleSprite = makeTitleSprite();
+      titleScene.add(titleSprite);
+    }
+    window.addEventListener('resize', resize);
+
+    const clock = new THREE.Clock();
+
+    function animate() {
+      const t = clock.getElapsedTime();
+      const beatWave = 0.5 + 0.5 * Math.sin((2 * Math.PI * t) / beat);
+
+      // subtle 85 BPM pulse across cyan structures
+      pillars.children.forEach((p, i) => {
+        const mat = p.material;
+        mat.opacity = p.userData.baseOpacity + beatWave * 0.07 + Math.sin(t * 0.8 + i * 0.09) * 0.02;
+      });
+
+      lanes.children.forEach((l, i) => {
+        l.material.opacity = 0.16 + beatWave * 0.09 + Math.sin(t * 0.7 + i * 0.8) * 0.02;
+      });
+
+      podGroup.children.forEach(pod => {
+        const d = pod.userData;
+        d.t = (d.t + d.speed * 0.0035) % 1;
+        const idx = Math.floor(d.t * (d.points.length - 1));
+        const next = (idx + 1) % d.points.length;
+        const lerpT = (d.t * (d.points.length - 1)) % 1;
+        pod.position.copy(d.points[idx]).lerp(d.points[next], lerpT);
+      });
+
+      particles.rotation.y = t * 0.015;
+      particleMat.opacity = 0.5 + beatWave * 0.22;
+
+      bgRenderer.render(scene, camera);
+      titleRenderer.render(titleScene, ortho);
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+  </script>
+</body>
+</html>
