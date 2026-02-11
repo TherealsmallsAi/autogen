@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SMALL TALK AI NEWS – 2026-02-10</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <style>
+    :root {
+      --bg: #03080f;
+      --text: #d9f9ff;
+      --cyan: #00ccff;
+      --gold: #ffcc00;
+      --line: #2f8dff;
+      --title: #39ff14;
+      --title-shadow: #00131f;
+      --card-bg: rgba(5, 18, 28, 0.72);
+      --card-border: rgba(0, 204, 255, 0.24);
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      width: 100%;
+      min-height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Roboto Mono', monospace;
+      scroll-behavior: smooth;
+    }
+
+    #scene {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .scanline {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background-image: linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 100% 3px;
+      opacity: 0.08;
+    }
+
+    .layout {
+      position: relative;
+      z-index: 2;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding: 1.5rem;
+      gap: 1.5rem;
+    }
+
+    .title-wrap {
+      min-height: 34vh;
+      display: grid;
+      place-items: center;
+    }
+
+    h1 {
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 900;
+      text-transform: uppercase;
+      font-size: clamp(3rem, 11vw, 8.8rem);
+      line-height: 0.9;
+      letter-spacing: 0.13em;
+      color: var(--title);
+      -webkit-text-stroke: 1.5px #000;
+      text-shadow:
+        2px 2px 0 var(--title-shadow),
+        -2px 2px 0 var(--title-shadow),
+        2px -2px 0 var(--title-shadow),
+        -2px -2px 0 var(--title-shadow);
+      text-align: center;
+      user-select: none;
+    }
+
+    .news-grid {
+      width: min(1260px, 100%);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 1rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 1rem 1rem 1.1rem;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: var(--gold);
+    }
+
+    .card h3 {
+      margin: 0 0 0.7rem;
+      color: var(--gold);
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .card p {
+      margin: 0;
+      font-size: 0.92rem;
+      line-height: 1.6;
+      color: #e9fcff;
+    }
+
+    .meta {
+      width: min(1260px, 100%);
+      margin: 0 auto;
+      display: grid;
+      gap: 0.8rem;
+    }
+
+    .note {
+      background: rgba(7, 14, 24, 0.7);
+      border: 1px solid rgba(47, 141, 255, 0.28);
+      border-radius: 8px;
+      padding: 0.8rem 0.9rem;
+      font-size: 0.86rem;
+      line-height: 1.5;
+      color: #d4f3ff;
+    }
+
+    footer {
+      width: min(1260px, 100%);
+      margin: 0 auto;
+      text-align: center;
+      opacity: 0.8;
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+      padding: 0.4rem 0 0.8rem;
+    }
+
+    @media (max-width: 768px) {
+      .layout { padding: 1rem; }
+      .title-wrap { min-height: 28vh; }
+      h1 { letter-spacing: 0.08em; }
+      .card h3 { font-size: 0.95rem; }
+    }
+  </style>
+</head>
+<body>
+  <div id="scene" aria-hidden="true"></div>
+  <div class="scanline" aria-hidden="true"></div>
+
+  <main class="layout">
+    <section class="title-wrap">
+      <h1>Small Talk AI News</h1>
+    </section>
+
+    <section class="news-grid" aria-label="Top AI News – February 10, 2026">
+      <article class="card">
+        <h3>Alphabet Raises $20B in Bonds for AI Infrastructure</h3>
+        <p>Google parent Alphabet issued $20 billion in bonds to fund AI data-center and chip expansion as hyperscaler infrastructure investment accelerates.</p>
+      </article>
+
+      <article class="card">
+        <h3>Datadog Jumps on AI-Driven Cloud Security Demand</h3>
+        <p>Datadog reported stronger-than-expected results, with AI adoption increasing demand for observability and cloud-security monitoring in production stacks.</p>
+      </article>
+
+      <article class="card">
+        <h3>Cadence Introduces AI Agent for Chip Design Workflows</h3>
+        <p>Cadence unveiled an AI agent aimed at reducing design and verification cycle time, helping teams ship semiconductor programs faster.</p>
+      </article>
+
+      <article class="card">
+        <h3>Telstra JV Cuts 200+ Roles During AI Transformation</h3>
+        <p>A Telstra-Accenture joint venture announced 200+ job cuts tied to a broader tech and AI rollout, with operational work being restructured.</p>
+      </article>
+
+      <article class="card">
+        <h3>Analysts Stay Bullish on Pony AI Robotaxi Outlook</h3>
+        <p>Pony AI retained broad analyst support as autonomous-driving commercialization and robotaxi deployment expectations remain strong into 2026.</p>
+      </article>
+    </section>
+
+    <section class="meta" aria-label="Publishing guidance">
+      <div class="note"><strong>Recommended recording:</strong> Use OBS Studio for a vertical 1080×1920 (or 4K) clip. Capture an 8–12 second pass with slow scroll + 2–3 card hovers for social reels.</div>
+      <div class="note"><strong>Tomorrow concept:</strong> <em>Echo Prism Cascade</em> — layered orthographic cyan prism slices, gold edge sparks, faint neon-blue micro-connectors pulsing subtly at 85 BPM. <strong>Title colors:</strong> neon-magenta <code>#ff00aa</code> with deep indigo outline <code>#330066</code>.</div>
+    </section>
+
+    <footer>February 10, 2026 • Small Talk AI News • Sources: Reuters, Bloomberg, Yahoo Finance, The Guardian • Daily AI briefings</footer>
+  </main>
+
+  <script>
+    // Technical lo-fi background: "Magnetic fault-slab field"
+    // Required palette: cyan 0x00ccff (main), gold 0xffcc00 (particles), faint neon-blue connectors.
+    // Pulse timing: 85 BPM -> 0.706 s/beat.
+
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x03080f);
+
+    const camera = new THREE.OrthographicCamera(-1.6, 1.6, 1.6, -1.6, 0.1, 100);
+    camera.position.z = 10;
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.getElementById('scene').appendChild(renderer.domElement);
+
+    const slabGroup = new THREE.Group();
+    scene.add(slabGroup);
+
+    for (let i = 0; i < 18; i++) {
+      const slabGeo = new THREE.PlaneGeometry(0.9 + Math.random() * 1.1, 0.08 + Math.random() * 0.22, 1, 1);
+      const slabMat = new THREE.MeshBasicMaterial({
+        color: 0x00ccff,
+        wireframe: true,
+        transparent: true,
+        opacity: 0.16 + Math.random() * 0.1
+      });
+      const slab = new THREE.Mesh(slabGeo, slabMat);
+      slab.position.set((Math.random() - 0.5) * 6.5, (Math.random() - 0.5) * 6.5, (Math.random() - 0.5) * 3.0);
+      slab.rotation.z = Math.random() * Math.PI;
+      slab.userData.spin = (Math.random() - 0.5) * 0.0009;
+      slabGroup.add(slab);
+    }
+
+    const sparkCount = 950;
+    const sparkPositions = new Float32Array(sparkCount * 3);
+    for (let i = 0; i < sparkCount * 3; i += 3) {
+      sparkPositions[i] = (Math.random() - 0.5) * 11;
+      sparkPositions[i + 1] = (Math.random() - 0.5) * 11;
+      sparkPositions[i + 2] = (Math.random() - 0.5) * 6;
+    }
+
+    const sparkGeo = new THREE.BufferGeometry();
+    sparkGeo.setAttribute('position', new THREE.BufferAttribute(sparkPositions, 3));
+    const sparkMat = new THREE.PointsMaterial({ color: 0xffcc00, size: 0.022, transparent: true, opacity: 0.65 });
+    const sparks = new THREE.Points(sparkGeo, sparkMat);
+    scene.add(sparks);
+
+    const connectors = [];
+    for (let i = 0; i < 56; i++) {
+      const connectorColor = new THREE.LineBasicMaterial({
+        color: 0x2f8dff,
+        transparent: true,
+        opacity: 0.08 + Math.random() * 0.08
+      });
+      const p = new THREE.Vector3((Math.random() - 0.5) * 9, (Math.random() - 0.5) * 9, (Math.random() - 0.5) * 6);
+      const points = [
+        p,
+        p.clone().add(new THREE.Vector3((Math.random() - 0.5) * 1.4, (Math.random() - 0.5) * 0.9, 0)),
+        p.clone().add(new THREE.Vector3((Math.random() - 0.5) * 1.9, (Math.random() - 0.5) * 1.1, 0))
+      ];
+      const line = new THREE.Line(new THREE.BufferGeometry().setFromPoints(points), connectorColor);
+      line.userData.baseOpacity = connectorColor.opacity;
+      connectors.push(line);
+      scene.add(line);
+    }
+
+    const bpm = 85 / 60;
+    const clock = new THREE.Clock();
+
+    function animate() {
+      requestAnimationFrame(animate);
+      const t = clock.getElapsedTime();
+      const pulse = Math.sin(t * Math.PI * 2 * bpm) * 0.5 + 0.5;
+
+      slabGroup.children.forEach((slab) => {
+        slab.rotation.z += slab.userData.spin;
+        slab.material.opacity = 0.16 + pulse * 0.1;
+      });
+
+      sparks.rotation.y += 0.00045;
+      sparkMat.opacity = 0.56 + pulse * 0.16;
+
+      for (const line of connectors) {
+        line.material.opacity = line.userData.baseOpacity + pulse * 0.06;
+      }
+
+      renderer.render(scene, camera);
+    }
+
+    animate();
+
+    window.addEventListener('resize', () => {
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+  </script>
+</body>
+</html>
