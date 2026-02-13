@@ -33,5 +33,10 @@
   "cta_text": "DO YOU VERIFY YOUR MODELS BEFORE THEY SHIP?",
   "hashtags": ["AISecurity", "ModelSupplyChain", "MLOps", "ThreatIntel"],
   "copyright_text": "2026 SMALL TALK AI BROADCAST NETWORK | VERIFIED FEED",
-  "console_notice": "Suspicious model artifact quarantined"
+  "console_notice": "Suspicious model artifact quarantined",
+  "bot_section_title": "SmLs Bot: Field Agent",
+  "bot_name": "SmLsbot",
+  "bot_description": "SmLsbot helps automate publishing and monitoring for always-on AI news operations.",
+  "bot_repo_url": "https://github.com/therealsmallsai/smLsbot",
+  "bot_image_url": "https://raw.githubusercontent.com/therealsmallsai/smLsbot/main/assets/smlsbot.jpg"
 }

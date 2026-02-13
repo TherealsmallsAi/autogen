@@ -30,3 +30,8 @@ Example cron entry (hourly):
 ```
 
 To publish continuously, pair this with your own upstream story generation pipeline and deployment job to GitHub Pages/Netlify/Vercel.
+
+
+## SmLs bot integration
+
+Every generated page now includes a dedicated SmLsbot spotlight section with image + repo link. Configure `bot_*` fields in your story JSON to customize it per post.

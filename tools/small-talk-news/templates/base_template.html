@@ -137,6 +137,18 @@
         .terminal-text {
             color: var(--terminal-green);
         }
+
+        .bot-frame {
+            border: 1px solid rgba(0, 243, 255, 0.4);
+            box-shadow: 0 0 25px rgba(0, 243, 255, 0.2);
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .bot-frame img {
+            max-height: 320px;
+            object-fit: cover;
+            width: 100%;
+        }
     </style>
 </head>
 <body class="p-4 md:p-8">
@@ -181,6 +193,19 @@
                     <p class="terminal-text text-xs italic">
                         {{TERMINAL_LOG}}
                     </p>
+                </div>
+            </article>
+
+            <article class="card p-6 mb-8 border-l-cyan-500">
+                <h4 class="font-bold text-cyan-300 mb-4">{{BOT_SECTION_TITLE}}</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                    <div class="bot-frame rounded overflow-hidden">
+                        <img src="{{BOT_IMAGE_URL}}" alt="{{BOT_NAME}} preview" loading="lazy">
+                    </div>
+                    <div>
+                        <p class="mb-3">{{BOT_DESCRIPTION}}</p>
+                        <a href="{{BOT_REPO_URL}}" target="_blank" rel="noopener noreferrer" class="btn-cyber inline-block">Open {{BOT_NAME}} Repo</a>
+                    </div>
                 </div>
             </article>
         </section>

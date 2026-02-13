@@ -53,7 +53,13 @@ DEFAULT_STORY = {
     ],
     "copyright_text": "2026 SMALL TALK AI BROADCAST NETWORK | ENCRYPTED TRANSMISSION",
     "console_notice": "Gemini AI Malware Detected in Region 7G",
+    "bot_section_title": "SmLs Bot: Always-On Automation Unit",
+    "bot_name": "SmLsbot",
+    "bot_description": "SmLsbot is a dedicated automation companion for continuous AI news operations, publishing workflows, and monitoring tasks.",
+    "bot_repo_url": "https://github.com/therealsmallsai/smLsbot",
+    "bot_image_url": "https://raw.githubusercontent.com/therealsmallsai/smLsbot/main/assets/smlsbot.jpg",
 }
+
 
 
 def slugify(value: str) -> str:
@@ -114,6 +120,11 @@ def render(template: str, story: dict[str, Any], display_date: str) -> str:
         "{{HASHTAGS}}": build_hashtags(story.get("hashtags", [])),
         "{{COPYRIGHT_TEXT}}": story["copyright_text"],
         "{{CONSOLE_NOTICE}}": story["console_notice"],
+        "{{BOT_SECTION_TITLE}}": story["bot_section_title"],
+        "{{BOT_NAME}}": story["bot_name"],
+        "{{BOT_DESCRIPTION}}": story["bot_description"],
+        "{{BOT_REPO_URL}}": story["bot_repo_url"],
+        "{{BOT_IMAGE_URL}}": story["bot_image_url"],
     }
 
     output = template
