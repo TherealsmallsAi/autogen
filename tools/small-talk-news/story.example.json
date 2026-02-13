@@ -1,0 +1,42 @@
+{
+  "page_title": "AI SUPPLY CHAIN ALERT",
+  "brand_name": "SMALL TALK AI NEWS",
+  "system_status": "LIVE MONITORING",
+  "region": "US-EAST",
+  "threat_level": "HIGH",
+  "flash_headline": "MODEL POISONING IN OPEN MODEL HUBS",
+  "flash_summary": "Security teams report a wave of tampered model checkpoints seeded with hidden malicious payloads.",
+  "primary_headline": "OPEN MODEL SUPPLY CHAIN UNDER ATTACK",
+  "primary_body": "Security analysts are seeing coordinated campaigns where malicious actors upload altered model weights and dependency bundles. Teams deploying without signature checks are at highest risk.",
+  "cards": [
+    {
+      "label": "MODEL BACKDOOR",
+      "color": "pink-600",
+      "title_color": "pink-400",
+      "body": "Backdoored models can silently return poisoned outputs when triggered by specific tokens."
+    },
+    {
+      "label": "DEPENDENCY SWAP",
+      "color": "yellow-500",
+      "title_color": "yellow-500",
+      "body": "Attackers publish lookalike packages with typosquatted names to steal credentials in CI."
+    }
+  ],
+  "special_section_title": "WHAT TO DO NOW",
+  "special_section_body": "Use model signing, lock dependencies, and run sandbox scans before promoting assets to production.",
+  "terminal_log": [
+    "Validating model signatures...",
+    "Blocking unknown package maintainers...",
+    "Forcing SBOM verification in CI...",
+    "Status: [CONTAINED / INVESTIGATION ACTIVE]"
+  ],
+  "cta_text": "DO YOU VERIFY YOUR MODELS BEFORE THEY SHIP?",
+  "hashtags": ["AISecurity", "ModelSupplyChain", "MLOps", "ThreatIntel"],
+  "copyright_text": "2026 SMALL TALK AI BROADCAST NETWORK | VERIFIED FEED",
+  "console_notice": "Suspicious model artifact quarantined",
+  "bot_section_title": "SmLs Bot: Field Agent",
+  "bot_name": "SmLsbot",
+  "bot_description": "SmLsbot helps automate publishing and monitoring for always-on AI news operations.",
+  "bot_repo_url": "https://github.com/therealsmallsai/smLsbot",
+  "bot_image_url": "https://raw.githubusercontent.com/therealsmallsai/smLsbot/main/assets/smlsbot.jpg"
+}
